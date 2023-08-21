@@ -1,0 +1,86 @@
+{% extends "logado.html" %}
+
+{% block title %}
+    Controlador Itens
+{% endblock %}
+{% block content %}
+<body>
+  <div>
+
+    <!-- ÁREA CADASTRAR ITEM -->
+    <div class="divStatic borda">
+      <br>
+      <form action="#" class="form-horizontal" method="post">
+          <h4>Cadastro Item</h4>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Nome *</label>  
+            <div class="col-md-4">
+            <input id="textinput" name="getNome" type="text" placeholder="Digite o nome do item" class="form-control input-md inputStyle" required="FA">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Valor *</label>  
+            <div class="col-md-4">
+            <input id="textinput" data-ls-module="charCounter" maxlength="11" name="getValor" type="text" placeholder="Digite o valor do item" class="form-control input-md inputStyle" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="col-md-4 control-label" for=""></label>
+            <div class="col-md-8">
+                <button name="button" value = "10" class="btn btn-success">Cadastrar</button>
+              <!--  <button type="submit" name="cadastrarButton" form="form1" value="Submit">Submit</button>-->
+              <!-- <button type="submit"  name="cadastrarButton" formmethod="post">Submit using POST</button> deu certo-->
+            </div>
+          </div>
+          
+          </fieldset>
+      </form>
+    </div>
+    <!-- ÁREA REMOVER ITEM -->
+    <div class="divStatic borda">
+        <br>
+        <h4>Remover Item</h4>
+        <form action="#" class="form-vertical" method="post">             
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">ID</label>  
+            <div class="col-md-4">
+            <input id="textinput" name="getId" type="text" data-ls-module="charCounter" maxlength="14" placeholder="Digite o id do item que deseja remover" class="form-control input-md inputStyle" required="FA">
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+              <button  name="button" value = "11"  class="btn btn-danger" text-align: center>Remover</button>
+            </div>
+          </div>
+        </form>
+    </div>
+
+     <!-- ÁREA TABELAS ITEMS -->
+    <div class="divTabelaiItens">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Cód.</th>
+                <th scope="col">Item</th>
+                <th scope="col">Preço</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%for item in items%}
+                    <tr>
+                      <td>{{dezitems[item]["id"]}}</td>
+                      <td>{{dezitems[item]["item"]}}</td>
+                      <td>R$ {{dezitems[item]["valor_item"]}}</td>
+                    </tr> 
+              {% endfor %}               
+            </tbody>
+        </table>
+        {{pagination.links}}   
+    </div>
+  </div>
+</body>
+{% endblock %}

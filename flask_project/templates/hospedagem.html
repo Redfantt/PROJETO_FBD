@@ -1,0 +1,127 @@
+{% extends "logado.html" %}
+
+{% block title %}
+    Controle Hospedagem
+{% endblock %}
+
+{% block content %}
+<body>
+    <div>
+        <!-- Hospedar/Reservar -->
+        <div class="divStatic borda">
+          <br>
+          <form action="#" class="form-horizontal" method="post">
+              <h5>Cliente</h5>
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Nome *</label>  
+                <div class="col-md-4">
+                <input id="textinput" name="getNome" type="text" placeholder="Digite o nome do cliente" class="form-control input-md inputStyle" required="FA">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">CPF *</label>  
+                <div class="col-md-4">
+                <input id="textinput" data-ls-module="charCounter" maxlength="11" name="getCPF" type="text" placeholder="Digite CPF do cliente" class="form-control input-md inputStyle" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Telefone *</label>  
+                <div class="col-md-4">
+                <input id="textinput" data-ls-module="charCounter" maxlength="11" name="getTelefone" type="text" placeholder="Digite o telefone do cliente" class="form-control input-md inputStyle" required>
+                </div>
+              </div>
+
+              <h5>Quarto</h5>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Quarto*</label>  
+                <div class="col-md-4">
+                <input id="textinput" type="number" data-ls-module="charCounter" maxlength="11" name="getQuarto" type="text" placeholder="Digite o número do quarto" class="form-control input-md inputStyle" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Dias*</label>  
+                <div class="col-md-4">
+                <input id="textinput" type="number" data-ls-module="charCounter" maxlength="11" name="getDias" type="text" placeholder="Digite o número de dias" class="form-control input-md inputStyle" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label" for=""></label>
+                <div class="col-md-8">
+                    <button name="button" value = "10" class="btn btn-success">Cadastrar</button>
+                </div>
+              </div>
+              
+              </fieldset>
+          </form>
+          <label> {{mensagem}} </label>
+        </div>
+        
+        <!-- Quitar Quarto -->
+        <div class="divStatic borda">
+          <br>
+          <form action="#" class="form-horizontal" method="post">
+              <h5>Quitar Hospedagem</h5>
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="textinput">Qual quarto? *</label>  
+                <div class="col-md-4">
+                <input id="textinput" name="getQuartoQuitar" type="number" placeholder="Digite o número do quarto" class="form-control input-md inputStyle" required="FA">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label" for=""></label>
+                <div class="col-md-8">
+                    <button name="button" value = "11" class="btn btn-warning">Quitar</button>
+                </div>
+              </div>
+              
+              </fieldset>
+          </form>
+          <label> {{mensagem2}} </label>
+        </div>
+    
+         <!-- ÁREA TABELAS ITEMS -->
+        <div class="divTabelaHospedagem">
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Quarto</th>
+                    <th scope="col">Diária</th>
+                    <th scope="col">Funcionário</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Data Entrada</th>
+                    <th scope="col">Data Saída</th>
+                    <th scope="col">Entrada</th>
+                    <th scope="col">Total Consumido</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {%for hp in hospedagem%}
+                        <tr>
+                          <td>{{hospedagemsLista[hp]["num_quarto"]}}</td>
+                          <td>R$ {{hospedagemsLista[hp]["diaria"]}}</td>
+                          <td>{{hospedagemsLista[hp]["nome_funcionario"]}}</td>
+                          <td>{{hospedagemsLista[hp]["nome_cliente"]}}</td>
+                          <td>{{hospedagemsLista[hp]["data_entrada"]}}</td>
+                          <td>{{hospedagemsLista[hp]["data_saida"]}}</td>
+                          <td>R$ {{hospedagemsLista[hp]["valor_entrada"]}}</td>
+                          <td>R$ {{hospedagemsLista[hp]["valor_consumido"]}}</td>
+                          <td>R$ {{hospedagemsLista[hp]["soma_total"]}}</td> 
+                          <td>{{hospedagemsLista[hp]["status"]}}</td>                     
+                        </tr> 
+                  {% endfor %}               
+                </tbody>    
+            </table>
+            {{pagination.links}}     
+        </div>
+      </div>
+</body>
+{% endblock %}
+

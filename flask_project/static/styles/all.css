@@ -1,0 +1,37 @@
+.divStyle{
+    width:440px; 
+    float:left;
+}
+
+.divStatic{
+    width:440px; 
+}
+
+.divTabelaQuarto{
+    margin-top: -1200px;
+    margin-bottom: 100px;
+    margin-right: 15px;
+    margin-left: 450px;
+  }
+.divTabelaiItens{
+    margin-top: -540px;
+    margin-bottom: auto;
+    margin-right: 15px;
+    margin-left: 450px;
+}
+
+.inputStyle{
+    height:40px;
+    width:400px
+}
+.borda{
+    border:1px solid black;
+    border-radius: 25px;
+}
+
+.divTabelaHospedagem{
+    margin-top: -870px;
+    margin-bottom: auto;
+    margin-right: 15px;
+    margin-left: 450px;
+}

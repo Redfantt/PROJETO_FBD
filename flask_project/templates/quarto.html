@@ -1,0 +1,164 @@
+{% extends "logado.html" %}
+
+{% block title %}
+    Controle Quarto
+{% endblock %}
+{% block content %}
+
+<body>
+    <div>
+  
+      <!-- ÁREA CADASTRAR QUARTO -->
+      <div class="divStatic borda">
+        <br>
+        <form action="#" class="form-horizontal" method="post">
+            <h4>Cadastrar Quarto</h4>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput">Num do Quarto</label>  
+              <div class="col-md-4">
+              <input id="textinput" type="number" name="getNumero" type="text" placeholder="Digite o número do quarto" class="form-control input-md inputStyle" required="FA">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput">Qtd Camas</label>  
+              <div class="col-md-4">
+              <input id="textinput" type="number" data-ls-module="charCounter" maxlength="11" name="getCama" type="text" placeholder="Digite a quantidade de camas" class="form-control input-md inputStyle" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput">Qtd Banheiros</label>  
+              <div class="col-md-4">
+              <input id="textinput" type="number" data-ls-module="charCounter" maxlength="11" name="getBanheiro" type="text" placeholder="Digite a quantidade de banheiros" class="form-control input-md inputStyle" required="">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput">Valor Diária</label>  
+              <div class="col-md-4">
+              <input id="textinput" data-ls-module="charCounter" maxlength="11" name="getDiaria" type="text" placeholder="Digite o valor diário do quarto" class="form-control input-md inputStyle" required="">
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label class="col-md-4 control-label" for=""></label>
+              <div class="col-md-8">
+                  <button name="button" value = "10" class="btn btn-success">Cadastrar</button>
+              </div>
+            </div>
+            
+            </fieldset>
+        </form>
+      </div>
+
+
+      <!-- ÁREA ADICIONAR CLIENTE AO QUARTO -->
+      <div class="divStatic borda">
+        <br>
+        <form action="#" class="form-horizontal" method="post">
+            <h4>Ocupar Quarto</h4>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput">CPF do Cliente</label>  
+              <div class="col-md-4">
+              <input id="textinput" name="getCliente" type="text" placeholder="Digite o cpf do clietne" class="form-control input-md inputStyle" required="FA">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput">Quarto</label>  
+              <div class="col-md-4">
+              <input id="textinput" type="number" data-ls-module="charCounter" maxlength="11" name="getQuarto" type="text" placeholder="Digite o número do quarto que deseja reservar" class="form-control input-md inputStyle" required>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label class="col-md-4 control-label" for=""></label>
+              <div class="col-md-8">
+                  <button name="button" value = "11" class="btn btn-warning">Reservar</button>
+              </div>
+            </div>
+
+        </form>
+      </div>
+
+      <!-- ÁREA CONSUMO -->
+      <div class="divStatic borda">
+        <br>
+        <form action="#" class="form-horizontal" method="post">
+            <h4>Consumir Item</h4>
+            
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput">Quarto</label>  
+              <div class="col-md-4">
+              <input id="textinput" type="number" name="getQuartoConsumir" type="text" placeholder="Digite o número do quarto" class="form-control input-md inputStyle" required="FA">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput">Item</label>  
+              <div class="col-md-4">
+              <input id="textinput" name="getItem" type="text" placeholder="Digite o nome do item" class="form-control input-md inputStyle" required="FA">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput">Quantidade</label>  
+              <div class="col-md-4">
+              <input id="textinput" type="number" data-ls-module="charCounter" maxlength="11" name="getQuantidade" type="text" placeholder="Digite a quantidade" class="form-control input-md inputStyle" required>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label class="col-md-4 control-label" for=""></label>
+              <div class="col-md-8">
+                  <button name="button" value = "12" class="btn btn-danger">Consumir</button>
+              </div>
+            </div>
+            
+            </fieldset>
+        </form>
+      </div>
+    
+    <!-- ÁREA TABELAS QUEARTO -->
+    <div class="divTabelaQuarto">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Número Quarto</th>
+                <th scope="col">Qtd Camas</th>
+                <th scope="col">Qtd Banheiros</th>
+                <th scope="col">Diária</th>
+                <th scope="col">Total Consumido</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%for quarto in quartos%}
+                    <tr>
+                      <td>{{dezquartos[quarto]["num_quarto"]}}</td>
+                      <td>{{dezquartos[quarto]["num_camas"]}}</td>
+                      <td>{{dezquartos[quarto]["num_banheiros"]}}</td>
+                      <td>R$ {{dezquartos[quarto]["diaria"]}}</td>
+                      {% for consumo in consumos %}
+                        {% if consumo["id"] == dezquartos[quarto]["id_consumo"]%}
+                          <td>R$ {{consumo["valor_total"]}}</td>
+                        {% endif %}                      
+                      {% endfor %}
+
+                      {%if dezquartos[quarto]["status"] == False %}
+                        <td>R$ 0.00</td>
+                      {%endif%}
+
+                      <td>{{dezquartos[quarto]["status"]}}</td>
+                    </tr> 
+              {% endfor %}               
+            </tbody>
+        </table>
+        {{pagination.links}}  
+        <h5>SÓ PARA TESTES</H5> 
+    </div>
+    
+</body>
+
+{% endblock %}
